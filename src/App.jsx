@@ -3,6 +3,7 @@ import { AuthProvider } from './context/Auth';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
   return (
