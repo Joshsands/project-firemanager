@@ -20,6 +20,7 @@ export default function Dashboard() {
   const [pmFilter, setPmFilter] = useState('');
   const [projectTypeFilter, setProjectTypeFilter] = useState('');
   const [creating, setCreating] = useState(false);
+  const [showCreateForm, setShowCreateForm] = useState(false);
   const [csvText, setCsvText] = useState('');
   const [csvHeaders, setCsvHeaders] = useState([]);
   const [csvPreviewRows, setCsvPreviewRows] = useState([]);
@@ -71,14 +72,7 @@ export default function Dashboard() {
     else setProjects(data ?? []);
   }
 
-  async function logout() {
-    try {
-      await supabase.auth.signOut();
-    } catch (err) {
-      console.error('Logout error', err);
-    }
-    navigate('/login');
-  }
+  // Logout moved to Navbar component
 
   // CSV parsing helpers
   function parseCsvText(text) {
@@ -601,49 +595,70 @@ export default function Dashboard() {
       <div style={{ maxWidth: '100%', width: '100%', margin: '0 auto' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <h2 style={{ margin: 0 }}>Your projects</h2>
-        <div>
-          <button onClick={logout} style={{ background: 'var(--color-primary, #ff6b35)', color: '#fff', border: 'none', padding: '8px 12px', borderRadius: 6, cursor: 'pointer' }}>Logout</button>
-        </div>
       </div>
-      <form onSubmit={createProject}>
-        <label style={{ display: 'block' }}>
-          Project name: <input placeholder="Project name" value={name} onChange={e => setName(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Description: <input placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Booked: <input type="date" value={booked} onChange={e => setBooked(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Closed: <input type="date" value={closed} onChange={e => setClosed(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Contract Amount: <input type="number" step="0.01" value={contractAmount} onChange={e => setContractAmount(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Margin Start (%): <input type="number" step="0.01" value={marginStart} onChange={e => setMarginStart(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Margin End (%): <input type="number" step="0.01" value={marginEnd} onChange={e => setMarginEnd(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          PM Name: <input placeholder="PM Name" value={pmName} onChange={e => setPmName(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Customer: <input placeholder="Customer" value={customer} onChange={e => setCustomer(e.target.value)} />
-        </label>
-        <label style={{ display: 'block' }}>
-          Project Type: 
-          <select value={projectType} onChange={e => setProjectType(e.target.value)}>
-            <option value="">Select type</option>
-            <option value="New Construction">New Construction</option>
-            <option value="Existing Construction">Existing Construction</option>
-            <option value="Owner Direct">Owner Direct</option>
-          </select>
-        </label>
-        <button type="submit" disabled={creating || !name.trim()}>{creating ? 'Creating…' : 'Create'}</button>
-      </form>
+
+      {/* Create New Project Button */}
+      <button 
+        onClick={() => setShowCreateForm(!showCreateForm)}
+        style={{ 
+          marginBottom: 16, 
+          padding: '10px 16px', 
+          background: 'var(--color-primary, #ff6b35)', 
+          color: '#fff', 
+          border: 'none', 
+          borderRadius: 4, 
+          cursor: 'pointer', 
+          fontSize: 14, 
+          fontWeight: 600 
+        }}
+      >
+        {showCreateForm ? '✕ Close' : '+ Create New Project'}
+      </button>
+
+      {/* Collapsible Form */}
+      {showCreateForm && (
+        <div style={{ padding: 16, marginBottom: 16, background: '#fff8f2', border: '1px solid #ffe6d5', borderRadius: 6 }}>
+          <form onSubmit={createProject}>
+            <label style={{ display: 'block' }}>
+              Project name: <input placeholder="Project name" value={name} onChange={e => setName(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Description: <input placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Booked: <input type="date" value={booked} onChange={e => setBooked(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Closed: <input type="date" value={closed} onChange={e => setClosed(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Contract Amount: <input type="number" step="0.01" value={contractAmount} onChange={e => setContractAmount(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Margin Start (%): <input type="number" step="0.01" value={marginStart} onChange={e => setMarginStart(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Margin End (%): <input type="number" step="0.01" value={marginEnd} onChange={e => setMarginEnd(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              PM Name: <input placeholder="PM Name" value={pmName} onChange={e => setPmName(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Customer: <input placeholder="Customer" value={customer} onChange={e => setCustomer(e.target.value)} />
+            </label>
+            <label style={{ display: 'block' }}>
+              Project Type: 
+              <select value={projectType} onChange={e => setProjectType(e.target.value)}>
+                <option value="">Select type</option>
+                <option value="New Construction">New Construction</option>
+                <option value="Existing Construction">Existing Construction</option>
+                <option value="Owner Direct">Owner Direct</option>
+              </select>
+            </label>
+            <button type="submit" disabled={creating || !name.trim()}>{creating ? 'Creating…' : 'Create'}</button>
+          </form>
+        </div>
+      )}
       {/* CSV Bulk Import UI */}
       <div style={{ marginTop: 12, padding: 12, background: '#fff8f2', border: '1px solid #ffe6d5', borderRadius: 6 }}>
         <strong>Bulk CSV import</strong>
