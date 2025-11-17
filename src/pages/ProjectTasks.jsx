@@ -74,6 +74,7 @@ export default function ProjectTasks() {
               <p><strong>Margin Start:</strong> {formatPct(project.margin_start)}</p>
               <p><strong>Margin End:</strong> {formatPct(project.margin_end)}</p>
               <p><strong>PM Name:</strong> {project.pm_name || '-'}</p>
+              <p><strong>Project Type:</strong> {project.project_type || '-'}</p>
               <p><strong>Customer:</strong> {project.customer || '-'}</p>
             </div>
           ) : (

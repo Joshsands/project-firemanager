@@ -17,6 +17,7 @@ ALTER TABLE public.projects
   ADD COLUMN IF NOT EXISTS programming_testing_days integer,
   ADD COLUMN IF NOT EXISTS final_testing_days integer,
   ADD COLUMN IF NOT EXISTS closeouts_days integer,
+  ADD COLUMN IF NOT EXISTS project_type text,
   ADD COLUMN IF NOT EXISTS design_review_completed boolean DEFAULT false,
   ADD COLUMN IF NOT EXISTS ahj_approval_completed boolean DEFAULT false,
   ADD COLUMN IF NOT EXISTS rough_in_walk_completed boolean DEFAULT false,

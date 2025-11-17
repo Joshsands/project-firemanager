@@ -57,14 +57,17 @@ h4 {
   color: var(--color-gray);
 }
 
-/* Forms and inputs */
+/* Forms and inputs - include generic input selector and ARIA roles so all textboxes match */
+input,
 input[type="text"],
 input[type="date"],
 input[type="number"],
 input[type="email"],
 input[type="password"],
 textarea,
-select {
+select,
+[role="textbox"],
+[role="spinbutton"] {
   padding: 12px 14px;
   border: 2px solid var(--color-dark);
   border-radius: 4px;
@@ -77,19 +80,23 @@ select {
   line-height: 1.5;
 }
 
+input:focus,
 input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus,
-select:focus {
+select:focus,
+[role="textbox"]:focus,
+[role="spinbutton"]:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
-input::placeholder {
+input::placeholder,
+[role="textbox"]::placeholder {
   color: #999;
 }
 
