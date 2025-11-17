@@ -16,13 +16,15 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Welcome back</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-      <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      <button type="submit">Log in</button>
-      <p>New here? <Link to="/signup">Create account</Link></p>
-    </form>
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleLogin}>
+        <h2>Welcome back</h2>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+        <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        <button type="submit">Log in</button>
+        <p>New here? <a href="/signup">Create account</a></p>
+      </form>
+    </div>
   );
 }
