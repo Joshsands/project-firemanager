@@ -1,0 +1,317 @@
+/* Construction-themed color scheme */
+:root {
+  --color-primary: #ff6b35;      /* Construction orange */
+  --color-primary-dark: #d84315;  /* Darker orange */
+  --color-secondary: #004e89;     /* Deep blue */
+  --color-accent: #f7931e;        /* Bright orange */
+  --color-dark: #1a1a1a;          /* Near black */
+  --color-light-gray: #f5f5f5;    /* Light background */
+  --color-gray: #666666;          /* Text gray */
+  --color-border: #ddd;           /* Border color */
+  --color-success: #4caf50;       /* Green */
+  --color-warning: #ff9800;       /* Amber */
+  --color-error: #f44336;         /* Red */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-light-gray);
+  color: var(--color-dark);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Main app container */
+#root {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-dark);
+  margin: 0.5em 0;
+  font-weight: 600;
+}
+
+h2 {
+  color: var(--color-secondary);
+  border-bottom: 3px solid var(--color-primary);
+  padding-bottom: 8px;
+}
+
+h3 {
+  color: var(--color-primary);
+}
+
+h4 {
+  color: var(--color-gray);
+}
+
+/* Forms and inputs */
+input[type="text"],
+input[type="date"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  padding: 12px 14px;
+  border: 2px solid var(--color-dark);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-dark);
+  background-color: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  height: 44px;
+  line-height: 1.5;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+input::placeholder {
+  color: #999;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  border-left: 4px solid var(--color-primary);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  color: var(--color-dark);
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Buttons */
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+  transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(255, 107, 53, 0.2);
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+thead {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+  color: white;
+}
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 107, 53, 0.05);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Expandable rows */
+tbody tr:nth-child(even) {
+  background-color: rgba(245, 245, 245, 0.5);
+}
+
+/* Modal styles */
+[role="dialog"] {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-left: 4px solid var(--color-primary);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+[role="dialog"] h3 {
+  color: var(--color-primary);
+  margin-top: 0;
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* Lists */
+ul, ol {
+  color: var(--color-dark);
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Utility classes */
+.text-muted {
+  color: var(--color-gray);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+/* Grid/flex utilities */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-12 {
+  gap: 12px;
+}
+
+.mb-12 {
+  margin-bottom: 12px;
+}
+
+.p-12 {
+  padding: 12px;
+}
+
+/* Internal labor matrix styling */
+.labor-matrix {
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.labor-matrix table {
+  box-shadow: none;
+}
+
+.labor-matrix input[type="number"] {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+}
+
+.labor-matrix input[type="number"]:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.1);
+}
+
+/* Remaining hours negative highlight */
+.remaining-overrun {
+  color: var(--color-error);
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  form {
+    padding: 16px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  th, td {
+    padding: 8px 12px;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
